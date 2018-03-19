@@ -10,6 +10,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { KeycloakService } from '../providers/keycloak-service/keycloak.service';
+import { KEYCLOAK_HTTP_INTERCEPTOR } from '../providers/keycloak-service/keycloak.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    KeycloakService,
+    KEYCLOAK_HTTP_INTERCEPTOR,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}    
   ]
 })
 export class AppModule {}
