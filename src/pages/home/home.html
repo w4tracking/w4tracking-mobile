@@ -1,17 +1,139 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+<ion-header [color]="isAndroid ? 'royal' : 'primary'">
+  <ion-navbar no-border-bottom>
+    <ion-title> 4Tracking </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="goToFindScanner()">
+        <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="goToSearch()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="goToConfig($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="wolsnut">
+      <ion-segment-button value="tracking" (click)="goToTracking()">
+        Tracking
+      </ion-segment-button>
+      <ion-segment-button value="scaner" (click)="goToScanner()">
+        Scaner
+      </ion-segment-button>
+      <ion-segment-button value="subscriptions" (click)="goToSubscriptions()">
+        Subscriptions
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+  <ion-refresher (ionRefresh)="reloadTracking($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div [ngSwitch]="wolsnut">
+    <ion-list *ngSwitchCase="'tracking'">
+      <ion-fab right bottom>
+        <button ion-fab color="primary" (click)="goToNewTracking()">
+          <ion-icon name="chatbubbles"></ion-icon>
+        </button>
+      </ion-fab>
+      <ion-item on-tap="goToSearchTracking()">
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Woody</h2>
+        <p>This town ain't big enough for the two of us!</p>
+        <ion-note item-end>3:43 pm</ion-note>
+      </ion-item>
+      <ion-item on-tap="goToSearchTracking()">
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Buzz Lightyear</h2>
+        <p>My eyeballs could have been sucked from their sockets!</p>
+        <ion-note item-end>1:12 pm</ion-note>
+      </ion-item>
+
+      <ion-item on-tap="goToSearchTracking()">
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Jessie</h2>
+        <p>Well aren't you just the sweetest space toy I ever did meet!</p>
+        <ion-note item-end>10:03 am</ion-note>
+      </ion-item>
+      <ion-item on-tap="goToSearchTracking()">
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Mr. Potato Head</h2>
+        <p>You're not turning me into a Mashed Potato.</p>
+        <ion-note item-end>5:47 am</ion-note>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'scaner'">
+     
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'subscriptions'">
+      <ion-list-header>Mis Empresas</ion-list-header>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Woody</h2>
+        <p>This town ain't big enough for the two of us!</p>
+        <ion-note item-end>3:43 pm</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Buzz Lightyear</h2>
+        <p>My eyeballs could have been sucked from their sockets!</p>
+        <ion-note item-end>1:12 pm</ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Jessie</h2>
+        <p>Well aren't you just the sweetest space toy I ever did meet!</p>
+        <ion-note item-end>10:03 am</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Mr. Potato Head</h2>
+        <p>You're not turning me into a Mashed Potato.</p>
+        <ion-note item-end>5:47 am</ion-note>
+      </ion-item>
+
+      <ion-list-header>Mis Suscripciones</ion-list-header>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Woody</h2>
+        <p>This town ain't big enough for the two of us!</p>
+        <ion-note item-end>3:43 pm</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/avatar-ts-slinky.png">
+        </ion-avatar>
+        <h2>Buzz Lightyear</h2>
+        <p>My eyeballs could have been sucked from their sockets!</p>
+        <ion-note item-end>1:12 pm</ion-note>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

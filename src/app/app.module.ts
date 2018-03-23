@@ -1,44 +1,39 @@
-import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-
-import { StatusBar } from '@ionic-native/status-bar';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { KeycloakService } from '../providers/keycloak-service/keycloak.service';
-import { KEYCLOAK_HTTP_INTERCEPTOR } from '../providers/keycloak-service/keycloak.interceptor';
+import { StatusBar } from '@ionic-native/status-bar';
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+
+import { MyApp } from './app.component';
+import { HomePage } from '../pages/home/home';
+
+import { TrackingDetailsModule } from '../pages/tracking-details/tracking-details.module';
+import { TrackingSearchModule } from '../pages/tracking-search/tracking-search.module';
+import { TrackingScannerModule } from '../pages/tracking-scanner/tracking-scanner.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    HomePage
   ],
   imports: [
     BrowserModule,
+    TrackingScannerModule,
+    TrackingDetailsModule,
+    TrackingSearchModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    HomePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    KeycloakService,
-    KEYCLOAK_HTTP_INTERCEPTOR,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}    
+    QRScanner,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
